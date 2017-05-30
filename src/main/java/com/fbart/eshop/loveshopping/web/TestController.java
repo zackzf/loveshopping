@@ -8,5 +8,6 @@ public class TestController {
 	}
 	public static void main(String[] args) {
 		String t1="";
+		String t2="t2";
 	}
 }
