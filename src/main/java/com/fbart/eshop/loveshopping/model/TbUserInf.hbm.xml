@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-30 11:13:09 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.fbart.eshop.loveshopping.model.TbUserInf" table="tb_user_inf" catalog="loveshopping" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="14" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="40" not-null="true" />
+        </property>
+        <property name="sex" type="int">
+            <column name="sex" not-null="true" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="40" />
+        </property>
+        <property name="addr" type="string">
+            <column name="addr" length="200" />
+        </property>
+        <property name="birth" type="date">
+            <column name="birth" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
