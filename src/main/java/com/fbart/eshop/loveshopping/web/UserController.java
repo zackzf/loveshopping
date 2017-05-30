@@ -1,9 +1,12 @@
 package com.fbart.eshop.loveshopping.web;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,20 +26,28 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/register.htm")
-	public String register(Model model) throws ParseException{
-		TbUserInf userInf=new TbUserInf();
-		userInf.setUsername("suibeibei");
-		userInf.setPassword("123456");
-		userInf.setSex(0);
-		userInf.setMobile("13621817504");
-		userInf.setEmail("1205399775@qq.com");
-		userInf.setAddr("昌城镇");
+	public String register(HttpServletRequest request,Model model) throws ParseException, UnsupportedEncodingException{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date birth = sdf.parse("1992-01-27");
-		userInf.setBirth(birth);
+		String username = request.getParameter("username");
+		String password=request.getParameter("password");
+		String addr=request.getParameter("addr");
+		String mobile=request.getParameter("mobile");
+		String birth=request.getParameter("birth")==""?sdf.format(new Date()):request.getParameter("birth");
+		String sex=request.getParameter("sex");
+		String email=request.getParameter("email");
+		TbUserInf userInf=new TbUserInf();
+		userInf.setUsername(username);
+		userInf.setPassword(password);
+		userInf.setSex(Integer.parseInt(sex));
+		userInf.setMobile(mobile);
+		userInf.setEmail(email);
+		userInf.setAddr(addr);
+		Date birthDay = sdf.parse(birth);
+		userInf.setBirth(birthDay);
 		Serializable serializable = userService.userRegister(userInf);
 		String s = serializable.toString();
-		log.info("主键："+s);
+		System.out.println("ok----------------------主键："+s);
+//		System.out.println("ok----------------------用户名："+username);
 		return "index";
 	}
 

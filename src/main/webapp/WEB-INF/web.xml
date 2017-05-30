@@ -34,11 +34,11 @@
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
         <init-param> 
             <param-name>encoding</param-name> 
-            <param-value>UTF-8</param-value> 
+            <param-value>gbk</param-value> 
         </init-param> 
     </filter>
     <filter-mapping> 
         <filter-name>SpringCharacterEncodingFilter</filter-name> 
-        <url-pattern>*.do</url-pattern> 
+        <url-pattern>*.htm</url-pattern> 
     </filter-mapping> 
 </web-app>

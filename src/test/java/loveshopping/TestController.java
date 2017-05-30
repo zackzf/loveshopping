@@ -21,6 +21,6 @@ public class TestController {
 //		BeanFactory factory = resource;
 //		UserDao userDao = (UserDao) factory.getBean("userDao");
 		Model model=null;
-		userController.register(model);
+//		userController.register(model);
 	}
 }
