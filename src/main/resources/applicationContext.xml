@@ -4,6 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
@@ -11,7 +12,19 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/data/mongo   
+	http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd ">
+	
+	<mongo:mongo host="192.168.80.14" port="27017"/>
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">   
+		<constructor-arg ref="mongo"/>   
+		<constructor-arg name="databaseName" value="mydb"/>   
+<!-- 		<constructor-arg name="defaultCollectionName" value="list" />    -->
+	</bean>
+	<bean id="personNDAO" class="com.fbart.eshop.loveshopping.dao.nosql.PersonNDAO">   
+        <property name="mongoTemplate" ref="mongoTemplate"></property>   
+    </bean>
 	
 	<!-- 在本配置文件中包含hibernate.cfg.xml中的相关信息 -->
 	<!-- 引入外部属性文件 -->
